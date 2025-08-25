@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+package hddis;
+
+option csharp_namespace = "Hddis.DataNode";
+option go_package = "hddis/pb";
+
+// 表示一个Redis值，可以是多种数据类型
+message RedisValue {
+  oneof value {
+    StringValue string_value = 1;
+    ListValue list_value = 2;
+    HashValue hash_value = 3;
+    SetValue set_value = 4;
+    SortedSetValue sorted_set_value = 5;
+    StreamValue stream_value = 6;
+    // 特殊类型
+    bool null_value = 7;  // 表示Redis的nil
+    bool ok_value = 8;    // 表示简单的"OK"响应
+    int64 integer_value = 9; // 表示整数响应
+    double double_value = 10; // 表示双精度浮点数
+    ErrorValue error_value = 11; // 表示错误响应
+  }
+}
+
+// 字符串值
+message StringValue {
+  string value = 1;
+  // 可选：TTL（生存时间，以毫秒为单位）
+  int64 ttl_ms = 2;
+}
+
+// 列表值
+message ListValue {
+  repeated string values = 1;
+}
+
+// 哈希值
+message HashValue {
+  map<string, string> fields = 1;
+}
+
+// 集合值
+message SetValue {
+  repeated string members = 1;
+}
+
+// 有序集合值
+message SortedSetValue {
+  message ScoreMember {
+    double score = 1;
+    string member = 2;
+  }
+  repeated ScoreMember members = 1;
+}
+
+// 流值
+message StreamValue {
+  message StreamEntry {
+    string id = 1;  // 流ID，如 "1640995200000-0"
+    map<string, string> fields = 2; // 键值对
+  }
+  repeated StreamEntry entries = 1;
+}
+
+// 错误值
+message ErrorValue {
+  string message = 1;
+}
+
+// 键请求
+message KeyRequest {
+  string key = 1;
+}
+
+// 键值请求
+message KeyValueRequest {
+  string key = 1;
+  RedisValue value = 2;
+  // 可选参数
+  int64 ttl_ms = 3;  // 过期时间（毫秒）
+  bool nx = 4;       // 仅当键不存在时设置
+  bool xx = 5;       // 仅当键存在时设置
+}
+
+// 响应
+message RedisResponse {
+  RedisValue value = 1;
+}
+
+// 哈希字段请求
+message HashFieldRequest {
+  string key = 1;
+  string field = 2;
+  optional string value = 3; // 可选，用于设置操作
+}
+
+// 服务定义
+service RedisRespService {
+  // 字符串操作
+  rpc Get(KeyRequest) returns (RedisResponse);
+  rpc Set(KeyValueRequest) returns (RedisResponse);
+  
+  // 哈希操作
+  rpc HGet(HashFieldRequest) returns (RedisResponse);
+  rpc HSet(HashFieldRequest) returns (RedisResponse); // 返回设置的数量
+  rpc HGetAll(KeyRequest) returns (RedisResponse);
+  
+  // 列表操作
+  rpc LPush(KeyValueRequest) returns (RedisResponse); // 返回列表长度
+  rpc LRange(KeyRequest) returns (RedisResponse); // 需要额外的start/stop参数，简化版
+  
+  // 集合操作
+  rpc SAdd(KeyValueRequest) returns (RedisResponse); // 返回添加的数量
+  rpc SMembers(KeyRequest) returns (RedisResponse);
+  
+  // 更多操作可以继续添加...
+}
