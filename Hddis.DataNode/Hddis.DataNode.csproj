@@ -32,6 +32,7 @@
 
     <ItemGroup>
       <Folder Include="Clients\" />
+      <Folder Include="Objects\Types\" />
     </ItemGroup>
 
     <ItemGroup>
