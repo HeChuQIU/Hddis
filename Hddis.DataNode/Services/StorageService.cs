@@ -11,11 +11,8 @@ public class StorageService:IStorageService
     public IHddisObject Operate(Command command)
     {
         _commandQueue.Enqueue(command);
+        throw new NotImplementedException();
     }
-
-    private
-
-
 }
 
 public interface IStorageService

@@ -6,7 +6,8 @@ var dataNode = builder.AddProject<Projects.Hddis_DataNode>("datanode");
 var hddisService =
     builder.AddContainer("hddis-resp", "hechuqiu/hddis-resp")
         .WithReference(dataNode)
-        .WithEndpoint(6379, 6379, "tcp", "redis");
+        .WithEndpoint(16379, 6379, "tcp", "redis")
+        .WithDaprSidecar();
 
 builder.AddProject<Projects.Hddis_Web>("webfrontend")
     .WithExternalHttpEndpoints()
