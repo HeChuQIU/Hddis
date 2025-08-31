@@ -5,7 +5,6 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
-        <PublishAot>true</PublishAot>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
@@ -31,11 +30,11 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Objects\Types\" />
+      <ProjectReference Include="..\Hddis.ServiceDefaults\Hddis.ServiceDefaults.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Hddis.ServiceDefaults\Hddis.ServiceDefaults.csproj" />
+      <Folder Include="Common\" />
     </ItemGroup>
 
 </Project>

@@ -1,7 +1,8 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var apiService = builder.AddProject<Projects.Hddis_ApiService>("apiservice");
-var dataNode = builder.AddProject<Projects.Hddis_DataNode>("datanode");
+var dataNode = builder.AddProject<Projects.Hddis_DataNode>("datanode")
+    ;
 
 var hddisService =
     builder.AddContainer("hddis-resp", "hechuqiu/hddis-resp")

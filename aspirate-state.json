@@ -1,0 +1,15 @@
+{
+  "projectPath": ".\\Hddis.AppHost\\",
+  "outputPath": "aspirate-output",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "outputFormat": "kustomize",
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "secrets": {
+    "salt": "IUK3bUJI5i1WvYl8",
+    "hash": "EMKQjuVu8v8pZInxH6rpxC75qdEbvVhojsrLTILoHb8=",
+    "secrets": {}
+  }
+}

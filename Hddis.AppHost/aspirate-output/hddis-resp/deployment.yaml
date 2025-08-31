@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hddis-resp
+  labels:
+    app: hddis-resp
+  annotations:
+    dapr.io/enabled: 'true'
+    dapr.io/config: tracing
+    dapr.io/app-id: hddis-resp
+    dapr.io/enable-api-logging: 'true'
+spec:
+  minReadySeconds: 60
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hddis-resp
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: hddis-resp
+      annotations:
+        dapr.io/enabled: 'true'
+        dapr.io/config: tracing
+        dapr.io/app-id: hddis-resp
+        dapr.io/enable-api-logging: 'true'
+    spec:
+      containers:
+      - name: hddis-resp
+        image: hechuqiu/hddis-resp:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: redis
+          containerPort: 6379
+        envFrom:
+        - configMapRef:
+            name: hddis-resp-env
+      terminationGracePeriodSeconds: 180

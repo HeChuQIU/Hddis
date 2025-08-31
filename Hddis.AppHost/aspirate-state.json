@@ -1,0 +1,22 @@
+{
+  "projectPath": ".",
+  "inputPath": "aspirate-output",
+  "outputPath": "aspirate-output",
+  "namespace": "hddis",
+  "containerImageTags": [
+    "latest"
+  ],
+  "containerBuilder": "docker",
+  "kubeContext": "kind-kind",
+  "outputFormat": "kustomize",
+  "skipFinalKustomizeGeneration": false,
+  "privateRegistryEmail": "aspir8@aka.ms",
+  "includeDashboard": true,
+  "useCustomNamespace": true,
+  "secrets": {
+    "salt": "GvWYzObXRo\u002B0CXSM",
+    "hash": "ROxajhSKiCnc1ydcSU9mPVbJ30TPJmDH\u002BTlNzMScHVc=",
+    "secrets": {}
+  },
+  "processAllComponents": true
+}

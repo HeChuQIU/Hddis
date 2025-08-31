@@ -1,0 +1,14 @@
+namespace: hddis
+
+resources:
+- apiservice
+- datanode
+- hddis-resp
+- webfrontend
+- namespace.yaml
+- dashboard.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+
