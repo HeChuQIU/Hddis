@@ -1,16 +1,16 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var apiService = builder.AddProject<Projects.Hddis_ApiService>("apiservice");
-var dataNode = builder.AddProject<Projects.Hddis_DataNode>("datanode")
-    ;
+var dataNode = builder.AddProject<Projects.Hddis_DataNode>("datanode");
 
-var hddisService =
-    builder.AddContainer("hddis-resp", "hechuqiu/hddis-resp")
-        .WithReference(dataNode)
-        .WithEndpoint(16379, 6379, "tcp", "redis")
-        .WithDaprSidecar();
+var hddisService = builder
+    .AddContainer("hddis-resp", "hechuqiu/hddis-resp")
+    .WithReference(dataNode)
+    .WithEndpoint(16379, 6379, "tcp", "redis")
+    .WithDaprSidecar();
 
-builder.AddProject<Projects.Hddis_Web>("webfrontend")
+builder
+    .AddProject<Projects.Hddis_Web>("webfrontend")
     .WithExternalHttpEndpoints()
     .WithReference(apiService)
     .WaitFor(apiService);

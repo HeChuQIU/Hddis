@@ -2,7 +2,7 @@
   "TemplatePath": null,
   "ContainerSettings": {
     "Registry": null,
-    "RepositoryPrefix": "hddis",
+    "RepositoryPrefix": null,
     "Tags": [
       "latest"
     ],
