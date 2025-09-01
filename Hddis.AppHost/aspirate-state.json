@@ -3,13 +3,15 @@
   "inputPath": "aspirate-output",
   "outputPath": "aspirate-output",
   "allowClearNamespace": true,
+  "containerRegistry": "localhost:6000",
   "containerImageTags": [
     "latest"
   ],
-  "imagePullPolicy": "IfNotPresent",
+  "imagePullPolicy": "Always",
   "containerBuilder": "docker",
   "kubeContext": "kind-kind",
   "outputFormat": "kustomize",
+  "disableSecrets": true,
   "skipFinalKustomizeGeneration": false,
   "privateRegistryEmail": "aspir8@aka.ms",
   "includeDashboard": true,

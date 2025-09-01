@@ -1,7 +1,7 @@
 {
   "TemplatePath": null,
   "ContainerSettings": {
-    "Registry": null,
+    "Registry": "localhost:6000",
     "RepositoryPrefix": null,
     "Tags": [
       "latest"

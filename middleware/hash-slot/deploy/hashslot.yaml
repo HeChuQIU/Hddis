@@ -1,0 +1,7 @@
+﻿apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: hash-slot
+spec:
+  type: middleware.http
+  version: v1

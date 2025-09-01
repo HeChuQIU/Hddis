@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: datanode
-        image: datanode:latest
-        imagePullPolicy: IfNotPresent
+        image: localhost:6000/datanode:latest
+        imagePullPolicy: Always
         ports:
         - name: http
           containerPort: 8080

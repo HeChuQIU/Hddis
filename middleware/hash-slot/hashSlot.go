@@ -21,6 +21,7 @@ func (m *hashSlot) GetHandler(metadata middleware.Metadata) (func(next http.Hand
 
 			// 出站逻辑
 			// ...
-		}
+
+		})
 	}, err
 }

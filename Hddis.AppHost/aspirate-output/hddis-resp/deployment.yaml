@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: hddis-resp
   labels:
@@ -12,12 +12,9 @@ metadata:
     dapr.io/enable-api-logging: 'true'
 spec:
   minReadySeconds: 60
-  replicas: 1
   selector:
     matchLabels:
       app: hddis-resp
-  strategy:
-    type: Recreate
   template:
     metadata:
       labels:
@@ -31,7 +28,7 @@ spec:
       containers:
       - name: hddis-resp
         image: hechuqiu/hddis-resp:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         ports:
         - name: redis
           containerPort: 6379
@@ -39,3 +36,5 @@ spec:
         - configMapRef:
             name: hddis-resp-env
       terminationGracePeriodSeconds: 180
+  serviceName: hddis-resp
+  replicas: 2

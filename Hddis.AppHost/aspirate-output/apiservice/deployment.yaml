@@ -20,8 +20,8 @@ spec:
     spec:
       containers:
       - name: apiservice
-        image: apiservice:latest
-        imagePullPolicy: IfNotPresent
+        image: localhost:6000/apiservice:latest
+        imagePullPolicy: Always
         ports:
         - name: http
           containerPort: 8080
